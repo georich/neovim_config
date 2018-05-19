@@ -27,6 +27,7 @@ Plug 'cespare/vim-toml'
 Plug 'tpope/vim-commentary'
 Plug 'raimondi/delimitmate'
 Plug 'vim-airline/vim-airline'
+Plug 'majutsushi/tagbar'
 
 " Initialize plugin system
 call plug#end()
@@ -37,6 +38,9 @@ set hidden
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " Language Client Settings
 
