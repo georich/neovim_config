@@ -5,10 +5,11 @@ Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 Plug 'sirver/ultisnips'
@@ -46,18 +47,36 @@ let g:airline#extensions#tabline#enabled = 1
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" Ale Settings
+let g:ale_linters = {
+\   'python': ['pyls', 'pylint', 'pydocstyle'],
+\   'rust': ['rls', 'rustc'],
+\}
+let g:ale_fixers = {
+\   'python': ['yapf'],
+\   'rust': ['rustfmt'],
+\}
+
+let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
+" FIX
+nnoremap gk :ALEHover<CR>
+
 " Language Client Settings
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'python': ['pyls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ }
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"     \ 'python': ['pyls'],
+"     \ 'javascript': ['javascript-typescript-stdio'],
+"     \ }
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> fd :call LanguageClient#textDocument_formatting()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" nnoremap <silent> fd :call LanguageClient#textDocument_formatting()<CR>
 
 " Snippet Settings
 
