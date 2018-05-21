@@ -25,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
