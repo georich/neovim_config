@@ -24,6 +24,7 @@ Plug 'raimondi/delimitmate'
 Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby'
+Plug 'dag/vim-fish'
 
 " Initialize plugin system
 call plug#end()
