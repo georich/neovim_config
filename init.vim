@@ -26,6 +26,7 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
 Plug 'ryanoasis/vim-devicons'
+" Plug 'edkolev/tmuxline.vim'
 
 " Initialize plugin system
 call plug#end()
