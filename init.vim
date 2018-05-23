@@ -66,14 +66,12 @@ let g:ale_open_list = 1
 nnoremap gk :ALEHover<CR>
 
 " Language Client Settings
-
 " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " nnoremap <silent> fd :call LanguageClient#textDocument_formatting()<CR>
 
 " Snippet Settings
-
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
@@ -85,8 +83,16 @@ nnoremap <C-P> :bprev<CR>
 syntax on
 colorscheme gruvbox
 set background=dark
-set number
 
+" Line numbering
+set number
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+
+" Python Settings
 let g:python_highlight_all = 1
 
 filetype plugin indent on
@@ -103,8 +109,10 @@ set updatetime=500
 
 " NERDTree Settings inc. autotoggle
 nmap nt :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+augroup nerdtree
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+augroup END
 
 " Go Settings
 let g:go_fmt_command = 'goimports'
