@@ -27,6 +27,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
+" Plug 'jnurmine/zenburn'
 
 " Initialize plugin system
 call plug#end()
@@ -54,7 +55,7 @@ let g:ale_linters = {
 \   'markdown': ['proselint'],
 \}
 let g:ale_fixers = {
-\   'python': ['yapf'],
+\   'python': ['black'],
 \   'rust': ['rustfmt'],
 \}
 
