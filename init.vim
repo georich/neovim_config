@@ -28,6 +28,7 @@ Plug 'dag/vim-fish'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
 " Plug 'jnurmine/zenburn'
+Plug 'easymotion/vim-easymotion'
 
 " Initialize plugin system
 call plug#end()
