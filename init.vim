@@ -66,7 +66,9 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
 " FIX
+nnoremap gd :ALEGoToDefinition<CR>
 nnoremap gk :ALEHover<CR>
+nnoremap fd :ALEFix<CR>
 
 " Language Client Settings
 " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
