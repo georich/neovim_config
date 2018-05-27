@@ -2,7 +2,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
@@ -27,7 +26,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
-" Plug 'jnurmine/zenburn'
 Plug 'easymotion/vim-easymotion'
 
 " Initialize plugin system
@@ -65,7 +63,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
-" FIX
+" Ale Keybinds
 nnoremap gd :ALEGoToDefinition<CR>
 nnoremap gk :ALEHover<CR>
 nnoremap fd :ALEFix<CR>
