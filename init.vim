@@ -24,7 +24,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 " Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion'
 
@@ -40,7 +40,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Devicons
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
