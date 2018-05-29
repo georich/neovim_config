@@ -6,7 +6,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+Plug 'zchee/deoplete-jedi'
+Plug 'sebastianmarkow/deoplete-rust'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
@@ -35,6 +36,9 @@ set termguicolors
 
 set hidden
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -58,7 +62,7 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
