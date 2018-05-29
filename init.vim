@@ -26,7 +26,6 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
 " Plug 'ryanoasis/vim-devicons'
-" Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion'
 
 " Initialize plugin system
@@ -65,6 +64,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'python': ['black'],
 \   'rust': ['rustfmt'],
+\   'go': ['goimports'],
 \}
 
 " let g:ale_completion_enabled = 1
