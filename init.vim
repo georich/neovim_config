@@ -38,6 +38,10 @@ set hidden
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='/home/george/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/george/Downloads/rustsrc/rust/src'
+nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+nmap <buffer> K <plug>DeopleteRustShowDocumentation
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -68,15 +72,9 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
 " Ale Keybinds
-nnoremap gd :ALEGoToDefinition<CR>
-nnoremap gk :ALEHover<CR>
+" nnoremap gd :ALEGoToDefinition<CR>
+" nnoremap gk :ALEHover<CR>
 nnoremap fd :ALEFix<CR>
-
-" Language Client Settings
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-" nnoremap <silent> fd :call LanguageClient#textDocument_formatting()<CR>
 
 " Snippet Settings
 let g:UltiSnipsExpandTrigger='<tab>'
