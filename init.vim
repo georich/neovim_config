@@ -42,6 +42,7 @@ let g:deoplete#sources#rust#racer_binary='/home/george/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/george/Downloads/rustsrc/rust/src'
 nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
 nmap <buffer> K <plug>DeopleteRustShowDocumentation
+let g:deoplete#sources#go#gocode_binary = '/home/george/go/bin/gocode'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -73,7 +74,7 @@ let g:ale_open_list = 1
 
 " Ale Keybinds
 " nnoremap gd :ALEGoToDefinition<CR>
-" nnoremap gk :ALEHover<CR>
+nnoremap gk :ALEHover<CR>
 nnoremap fd :ALEFix<CR>
 
 " Snippet Settings
