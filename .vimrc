@@ -127,6 +127,7 @@ let g:ale_fixers = {
 let g:airline#extensions#ale#enabled = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+let g:ale_python_black_options = '-l 79'
 
 " Ale Keybinds
 nnoremap gd :ALEGoToDefinition<CR>
