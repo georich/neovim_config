@@ -1,5 +1,5 @@
-=============
-Neovim Config
-=============
+===========
+Vim Configs
+===========
 
-Just a backup of my neovim config.
+Just a backup of my vim and neovim configs.
