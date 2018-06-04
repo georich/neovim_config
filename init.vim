@@ -1,6 +1,5 @@
 " Directory for plugins
 call plug#begin('~/.vim/plugged')
-
 Plug 'morhetz/gruvbox'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
@@ -23,12 +22,9 @@ Plug 'tpope/vim-commentary'
 Plug 'raimondi/delimitmate'
 Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
-Plug 'vim-ruby/vim-ruby'
 Plug 'dag/vim-fish'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
-
-" Initialize plugin system
 call plug#end()
 
 set termguicolors
@@ -71,6 +67,7 @@ let g:ale_fixers = {
 let g:airline#extensions#ale#enabled = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+let g:ale_python_black_options = '-l 79'
 
 " Ale Keybinds
 " nnoremap gd :ALEGoToDefinition<CR>
@@ -102,7 +99,7 @@ augroup END
 let g:python_highlight_all = 1
 
 filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
 
 set mouse=a
 
@@ -110,10 +107,13 @@ set cursorline
 
 set ignorecase
 set smartcase
+set hlsearch
 
-set updatetime=500
+set updatetime=100
 
 " NERDTree Settings inc. autotoggle
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '.git']
 nmap nt :NERDTreeToggle<CR>
 augroup nerdtree
     autocmd StdinReadPre * let s:std_in=1
@@ -135,18 +135,5 @@ let g:go_highlight_variable_assignments = 1
 
 " Easymotion Settings
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-" nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
 nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-" map <Leader>j <Plug>(easymotion-j)
-" map <Leader>k <Plug>(easymotion-k)
