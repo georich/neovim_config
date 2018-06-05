@@ -115,7 +115,7 @@ set updatetime=100
 
 " NERDTree Settings inc. autotoggle
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '.git']
+let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '.git$']
 nmap nt :NERDTreeToggle<CR>
 augroup nerdtree
     autocmd StdinReadPre * let s:std_in=1
