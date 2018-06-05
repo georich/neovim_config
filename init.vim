@@ -23,13 +23,18 @@ Plug 'raimondi/delimitmate'
 Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'dag/vim-fish'
-" Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
+
+set encoding=utf-8
 
 set termguicolors
 
 set hidden
+
+" Adjust backspace and eol movement
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -42,9 +47,6 @@ let g:deoplete#sources#go#gocode_binary = '/home/george/go/bin/gocode'
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
-" Devicons
-" let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
