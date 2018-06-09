@@ -15,7 +15,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
-Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-commentary'
@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'dag/vim-fish'
 Plug 'easymotion/vim-easymotion'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set encoding=utf-8
@@ -35,6 +36,9 @@ set hidden
 " Adjust backspace and eol movement
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
+
+" Devicons Settings
+let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -102,6 +106,7 @@ let g:python_highlight_all = 1
 
 filetype plugin indent on
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set autoread
 
 set mouse=a
 
@@ -124,7 +129,6 @@ augroup END
 
 " Go Settings
 let g:go_fmt_command = 'goimports'
-" let g:go_metalinter_autosave = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
