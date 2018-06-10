@@ -12,7 +12,7 @@ Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf'
+" Plug 'junegunn/fzf'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 Plug 'pangloss/vim-javascript'
@@ -25,6 +25,8 @@ Plug 'majutsushi/tagbar'
 Plug 'dag/vim-fish'
 Plug 'easymotion/vim-easymotion'
 Plug 'ryanoasis/vim-devicons'
+Plug 'posva/vim-vue'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 set encoding=utf-8
@@ -143,3 +145,13 @@ let g:go_highlight_variable_assignments = 1
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
+
+" Markdown Settings
+let g:vim_markdown_folding_disabled=1
+
+" GitGutter Settings
+let g:gitgutter_sign_added='┃'
+let g:gitgutter_sign_modified='┃'
+let g:gitgutter_sign_removed='◢'
+let g:gitgutter_sign_removed_first_line='◥'
+let g:gitgutter_sign_modified_removed='◢'
