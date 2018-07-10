@@ -1,124 +1,96 @@
-" Directory for plugins
-call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'rust-lang/rust.vim'
-Plug 'vim-python/python-syntax'
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'sebastianmarkow/deoplete-rust'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-" Plug 'junegunn/fzf'
-Plug 'fatih/vim-go'
-Plug 'zchee/deoplete-go'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'cespare/vim-toml'
-Plug 'tpope/vim-commentary'
-Plug 'raimondi/delimitmate'
-Plug 'vim-airline/vim-airline'
-Plug 'majutsushi/tagbar'
-Plug 'dag/vim-fish'
-Plug 'easymotion/vim-easymotion'
-Plug 'ryanoasis/vim-devicons'
-Plug 'posva/vim-vue'
-Plug 'plasticboy/vim-markdown'
-call plug#end()
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/george/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/george/.cache/dein')
+  call dein#begin('/home/george/.cache/dein')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/george/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here:
+  call dein#add('morhetz/gruvbox')
+  call dein#add('rust-lang/rust.vim', { 'on_ft': 'rust' })
+  call dein#add('vim-python/python-syntax', { 'on_ft': 'python' })
+  call dein#add('pangloss/vim-javascript', { 'on_ft': 'javascript' })
+  call dein#add('mxw/vim-jsx', { 'on_ft': 'javascript' })
+  call dein#add('cespare/vim-toml', { 'on_ft': 'toml' })
+  call dein#add('dag/vim-fish', { 'on_ft': 'fish' })
+  call dein#add('plasticboy/vim-markdown', { 'on_ft': 'markdown' })
+  call dein#add('posva/vim-vue', { 'on_ft': 'vue' })
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('xuyuanp/nerdtree-git-plugin')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('raimondi/delimitmate')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('tpope/vim-unimpaired')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('easymotion/vim-easymotion')
+  call dein#add('sirver/ultisnips')
+  call dein#add('honza/vim-snippets')
+  call dein#add('ncm2/ncm2')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('ncm2/ncm2-bufword')
+  call dein#add('ncm2/ncm2-path')
+  call dein#add('ncm2/ncm2-ultisnips')
+  call dein#add('junegunn/fzf.vim')
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+"End dein Scripts-------------------------
 
 set encoding=utf-8
-
 set termguicolors
-
 set hidden
+set number
+set background=dark
+colorscheme gruvbox
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set autoread
+set mouse=a
+set cursorline
+set ignorecase
+set smartcase
+set hlsearch
+set ttimeoutlen=0
+set updatetime=500
 
 " Adjust backspace and eol movement
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" Devicons Settings
-let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#rust#racer_binary='/home/george/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/george/Downloads/rustsrc/rust/src'
-nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-nmap <buffer> K <plug>DeopleteRustShowDocumentation
-let g:deoplete#sources#go#gocode_binary = '/home/george/go/bin/gocode'
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" Tagbar
-nmap <F8> :TagbarToggle<CR>
-
-" Ale Settings
-let g:ale_linters = {
-\   'python': ['pyls', 'pylint'],
-\   'rust': ['rls', 'rustc'],
-\   'vim': ['vint'],
-\   'rst': ['proselint', 'rstcheck'],
-\   'markdown': ['proselint'],
-\}
-let g:ale_fixers = {
-\   'python': ['black'],
-\   'rust': ['rustfmt'],
-\   'go': ['goimports'],
-\}
-
-" let g:ale_completion_enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
-let g:ale_python_black_options = '-l 79'
-
-" Ale Keybinds
-" nnoremap gd :ALEGoToDefinition<CR>
-nnoremap gk :ALEHover<CR>
-nnoremap fd :ALEFix<CR>
-
-" Snippet Settings
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-k>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
-
-" Buffer Keybinds
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-P> :bprev<CR>
-
-syntax on
-colorscheme gruvbox
-set background=dark
-
 " Line numbering
 set number
 augroup numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
 augroup END
 
-" Python Settings
-let g:python_highlight_all = 1
-
-filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
-set autoread
-
-set mouse=a
-
-set cursorline
-
-set ignorecase
-set smartcase
-set hlsearch
-
-set updatetime=100
+" ncm2 settings
+autocmd BufEnter * call ncm2#enable_for_buffer() " enable ncm2 for all buffer
+set completeopt+=noinsert,menuone,noselect " note that must keep noinsert in completeopt, the others is optional
+au TextChangedI * call ncm2#auto_trigger() " enable auto complete for `<backspace>`, `<c-w>` keys
+inoremap <c-c> <ESC> " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " NERDTree Settings inc. autotoggle
 let g:NERDTreeShowHidden=1
@@ -129,29 +101,29 @@ augroup nerdtree
     autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 augroup END
 
-" Go Settings
-let g:go_fmt_command = 'goimports'
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 1
-
 " Easymotion Settings
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
 
+" Python Settings
+let g:python_highlight_all = 1
+
+" LanguageClient-neovim Settings
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['pyls'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" Airline Settings
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+
 " Markdown Settings
 let g:vim_markdown_folding_disabled=1
-
-" GitGutter Settings
-let g:gitgutter_sign_added='┃'
-let g:gitgutter_sign_modified='┃'
-let g:gitgutter_sign_removed='◢'
-let g:gitgutter_sign_removed_first_line='◥'
-let g:gitgutter_sign_modified_removed='◢'
