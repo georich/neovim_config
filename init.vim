@@ -34,16 +34,12 @@ if dein#load_state('/home/george/.cache/dein')
   call dein#add('easymotion/vim-easymotion')
   call dein#add('sirver/ultisnips')
   call dein#add('honza/vim-snippets')
-  call dein#add('ncm2/ncm2')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('ncm2/ncm2-bufword')
-  call dein#add('ncm2/ncm2-path')
-  call dein#add('ncm2/ncm2-ultisnips')
   call dein#add('junegunn/fzf.vim')
-  call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
-    \ })
+  call dein#add('w0rp/ale')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('zchee/deoplete-jedi')
+  call dein#add('sebastianmarkow/deoplete-rust')
+  call dein#add('zchee/deoplete-go')
 
   " Required:
   call dein#end()
@@ -70,6 +66,7 @@ set smartcase
 set hlsearch
 set ttimeoutlen=0
 set updatetime=500
+set completeopt+=menuone
 
 " Adjust backspace and eol movement
 set backspace=eol,start,indent
@@ -83,14 +80,13 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
 augroup END
 
-" ncm2 settings
-autocmd BufEnter * call ncm2#enable_for_buffer() " enable ncm2 for all buffer
-set completeopt+=noinsert,menuone,noselect " note that must keep noinsert in completeopt, the others is optional
-au TextChangedI * call ncm2#auto_trigger() " enable auto complete for `<backspace>`, `<c-w>` keys
-inoremap <c-c> <ESC> " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python'
+let g:deoplete#sources#rust#racer_binary='/home/george/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/george/Downloads/rust/src'
+nmap <buffer> K <plug>DeopleteRustShowDocumentation
+let g:deoplete#sources#go#gocode_binary = '/home/george/go/bin/gocode'
 
 " NERDTree Settings inc. autotoggle
 let g:NERDTreeShowHidden=1
@@ -102,28 +98,44 @@ augroup nerdtree
 augroup END
 
 " Easymotion Settings
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
 
 " Python Settings
 let g:python_highlight_all = 1
 
-" LanguageClient-neovim Settings
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'python': ['pyls'],
-    \ }
+" Ale Settings
+let g:ale_linters = {
+\   'python': ['pyls', 'pylint', 'pyre'],
+\   'rust': ['rls', 'rustc'],
+\   'vim': ['vint'],
+\   'rst': ['proselint', 'rstcheck'],
+\   'markdown': ['proselint'],
+\}
+let g:ale_fixers = {
+\   'python': ['black'],
+\   'rust': ['rustfmt'],
+\   'go': ['goimports'],
+\}
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+let g:airline#extensions#ale#enabled = 1
+let g:ale_python_black_options = '-l 79'
+
+" Ale Keybinds
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap gk :ALEHover<CR>
+nnoremap fd :ALEFix<CR>
 
 " Airline Settings
 let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
 
 " Markdown Settings
 let g:vim_markdown_folding_disabled=1
+
+" FZF hide statusline
+augroup fuzzyf
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+        \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
